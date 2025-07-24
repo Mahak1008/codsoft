@@ -1,0 +1,68 @@
+import random
+import string
+
+def generate_password(total_length, num_special, num_digits):
+    # Characters
+    letters = string.ascii_letters
+    digits = string.digits
+    specials = string.punctuation
+
+    # Validate input
+    if num_special + num_digits > total_length:
+        return "❌ Error: Sum of special symbols & digits is greater than total length!"
+
+    # Pick required characters
+    chosen_specials = [random.choice(specials) for _ in range(num_special)]
+    chosen_digits = [random.choice(digits) for _ in range(num_digits)]
+    remaining_letters = total_length - (num_special + num_digits)
+    chosen_letters = [random.choice(letters) for _ in range(remaining_letters)]
+
+    # Combine all
+    password_list = chosen_specials + chosen_digits + chosen_letters
+    random.shuffle(password_list)
+
+    return ''.join(password_list)
+
+def main():
+    print("=====================================")
+    print("         🔐 PASSWORD GENERATOR       ")
+    print("=====================================\n")
+
+    while True:
+        try:
+            total_length = int(input("➡️ Enter total password length: "))
+            if total_length < 1:
+                print("❌ Length must be at least 1!")
+                continue
+            break
+        except ValueError:
+            print("❌ Please enter a valid number!")
+
+    while True:
+        try:
+            num_special = int(input("➡️ How many special symbols? "))
+            if num_special < 0:
+                print("❌ Cannot be negative!")
+                continue
+            break
+        except ValueError:
+            print("❌ Enter a valid number!")
+
+    while True:
+        try:
+            num_digits = int(input("➡️ How many digits? "))
+            if num_digits < 0:
+                print("❌ Cannot be negative!")
+                continue
+            break
+        except ValueError:
+            print("❌ Enter a valid number!")
+
+    # Generate
+    password = generate_password(total_length, num_special, num_digits)
+    print("\n✅ Your Generated Password is:")
+    print(password)
+    print("=====================================")
+
+if __name__ == "__main__":
+    main()  

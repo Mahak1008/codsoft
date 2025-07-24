@@ -1,0 +1,73 @@
+# Functions for each operation
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "❌ Error! Division by zero is not allowed."
+
+def power(a, b):
+    return a ** b
+
+def modulus(a, b):
+    return a % b
+
+def show_menu():
+    print("\n===== SIMPLE CALCULATOR =====")
+    print("Choose an operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    print("5. Power (x^y)")
+    print("6. Modulus (%)")
+    print("7. Exit")
+
+# Main program loop
+while True:
+    show_menu()
+    choice = input("Enter your choice (1-7): ")
+
+    if choice == "7":
+        print("👋 Exiting Calculator. Goodbye!")
+        break
+
+    # Take numbers input
+    try:
+        num1 = float(input("Enter the first number: "))
+        num2 = float(input("Enter the second number: "))
+    except ValueError:
+        print("❌ Invalid input! Please enter numeric values only.")
+        continue
+
+    # Perform selected operation
+    if choice == "1":
+        result = add(num1, num2)
+        print(f"✅ Result: {num1} + {num2} = {result}")
+    elif choice == "2":
+        result = subtract(num1, num2)
+        print(f"✅ Result: {num1} - {num2} = {result}")
+    elif choice == "3":
+        result = multiply(num1, num2)
+        print(f"✅ Result: {num1} * {num2} = {result}")
+    elif choice == "4":
+        result = divide(num1, num2)
+        print(f"✅ Result: {num1} / {num2} = {result}")
+    elif choice == "5":
+        result = power(num1, num2)
+        print(f"✅ Result: {num1} ^ {num2} = {result}")
+    elif choice == "6":
+        result = modulus(num1, num2)
+        print(f"✅ Result: {num1} % {num2} = {result}")
+    else:
+        print("❌ Invalid choice! Please select a valid option.")
+    
+    print("\n----------------------------")
